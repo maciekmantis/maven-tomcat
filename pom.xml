@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>maven-tomcat</groupId>
+    <artifactId>maven-tomcat</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>maven-tomcat Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <server.url>http://127.0.0.1:8080</server.url>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>maven-tomcat</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <url>${server.url}/manager/text</url>
+                    <server>TomcatServer</server>
+
+                    <!-- Set tomcat credenctials here or in .m2/settings.xml -->
+
+                    <!--<username>tomcat</username>-->
+                    <!--<password>s3cret</password>-->
+
+                    <!-- Deploy: mvn tomcat7:deploy -->
+                    <!-- Redeploy: mvn tomcat7:redeploy -->
+
+                    <path>/${project.build.finalName}</path>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
